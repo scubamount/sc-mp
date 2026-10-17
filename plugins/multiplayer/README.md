@@ -130,10 +130,10 @@ check and the refusal when admission is Unknown or EAC is present are exactly as
   session, and one that is not the contract (one `mod.log` line per session). A pose that arrives on
   `multiplayer.pose` is still accepted, from a session a player hosts or an unmodified player. Spawns and
   despawns are not filtered by nearby-only: they still reach everyone through the network library.
-- The message layouts are in `relay_wire.h`, a **byte-identical copy** of the server's
-  `server/relay_wire.h` (standard headers only, with golden bytes in the server's
-  `tests/server/test_relay_wire.cpp`; the workflow test repeats the roster's). Do not edit it here:
-  the contract belongs to the server, and a layout change gets a new version number there.
+- The message layouts are in `relay_wire.h`, the one wire header this module shares with the relay server in
+  `server/` (standard headers only, with golden bytes in `server/tests/test_relay_wire.cpp`; the workflow test
+  repeats the roster's). There is no second copy. A layout change gets a new version number, and the server and
+  this module change together, in a change of its own.
 - Poses, spawns and despawns are unchanged: the same 10 Hz, the same messages, still relayed between
   players by the network library unless nearby-only is on (below). The module works the same on a session
   hosted by a player.
