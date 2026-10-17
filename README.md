@@ -43,12 +43,13 @@ release asset in a directory and pass `-DSCO_SDK_ARCHIVE_DIR=<dir>`; the hash is
 change `SCO_SDK_VERSION` and `SCO_SDK_SHA256` together (from the release `SHA256SUMS`). A green build is
 not "verified in game": nothing here has been run in game.
 
-## Branches
+## Relay support
 
-- `main`: the module as it was in sc-offline v0.7.8.
-- `relay-import`: the relay work from sc-offline PR #133 (a relay server that is never a player,
-  nearby-only forwarding, smoother ghosts), applied on top. Not merged; see
-  [docs/relay-roadmap.md](https://github.com/scubamount/sc-mp/blob/relay-import/docs/relay-roadmap.md) on that branch.
+The plugin works with a relay server that is never a player (sc-offline PR #133, from an outside contributor;
+see [PROVENANCE.md](PROVENANCE.md)): it reads the server's `multiplayer.relay` roster, follows nearby-only
+forwarding, and moves ghosts from a buffer of recent poses. The relay server itself is not in this repository.
+Where one would live and what it must meet: [CONTRIBUTING.md](CONTRIBUTING.md). Background:
+[docs/relay-roadmap.md](docs/relay-roadmap.md). Not run in game.
 
 ## Licence
 
